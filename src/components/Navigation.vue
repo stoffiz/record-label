@@ -6,18 +6,17 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav m-auto text-uppercase">
-          <li class="nav-item mr-4">
-            <router-link to="/" class="nav-link">Home</router-link>
-          </li>
-          <li class="nav-item d-none d-lg-block"><span class="nav-link">|</span></li>
-          <li class="nav-item ml-lg-4 mr-4">
-            <router-link to="/news" class="nav-link">News</router-link>
-          </li>
-          <li class="nav-item d-none d-lg-block"><span class="nav-link">|</span></li>
-          <li class="nav-item ml-lg-4 mr-4 dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div class="collapse navbar-collapse justify-content-between text-uppercase" id="navbarSupportedContent">
+          <span class="nav-item">
+            <router-link to="/" class="nav-link px-0">Home</router-link>
+          </span>
+          <span class="nav-item d-none d-lg-block">|</span>
+          <span class="nav-item">
+            <router-link to="/news" class="nav-link px-0">News</router-link>
+          </span>
+          <span class="nav-item d-none d-lg-block">|</span>
+          <span class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle px-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Releases
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -27,16 +26,15 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
-          </li>
-          <li class="nav-item d-none d-lg-block"><span class="nav-link">|</span></li>
-          <li class="nav-item ml-lg-4 mr-4">
-            <a class="nav-link" href="#">Shop</a>
-          </li>
-          <li class="nav-item d-none d-lg-block"><span class="nav-link">|</span></li>
-          <li class="nav-item ml-lg-4">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
+          </span>
+          <span class="nav-item d-none d-lg-block">|</span>
+          <span class="nav-item">
+            <a class="nav-link px-0" href="#">Shop</a>
+          </span>
+          <span class="nav-item d-none d-lg-block">|</span>
+          <span class="nav-item">
+            <a class="nav-link px-0" href="#">Contact</a>
+          </span>
         <!-- <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -84,8 +82,13 @@ export default {
   color:#FCF9F9 !important;
 }
 
+.nav-item {
+  color:#BBB;
+}
+
 .nav-link {
   letter-spacing: 0.5rem;
+  color: #BBB
 }
 
 .nav-link:hover {
