@@ -1,32 +1,76 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <Navigation />
+    <Showcase v-bind:activeRoute="currentRoute" />
+    <div>
+      <router-view />
     </div>
-    <router-view/>
+    <Footer />
   </div>
 </template>
 
+<script>
+import Navigation from "@/components/Navigation.vue";
+import Showcase from "@/components/Showcase.vue";
+import Footer from "@/components/Footer.vue";
+
+export default {
+  components: {
+    Navigation,
+    Showcase,
+    Footer
+  },
+  data: function() {
+    return {
+      test: "Hello Christoffer Åström. Welcome to the website",
+      testing: "",
+      route: this.$route.name
+    };
+  },
+  computed: {
+    currentUser: function() {
+      return (this.testing = window.Date());
+    },
+    currentRoute: function() {
+      return this.$route.name
+    }
+  }
+};
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.custom-container {
+  width: 80%;
+  margin: auto;
 }
 
-#nav {
-  padding: 30px;
+.text-gold {
+  color: #999900;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.text-small {
+  font-size: 0.8rem;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.bg-black {
+  background: #1c1c1c;
+}
+
+.text-white {
+  color: #fcf9f9 !important;
+}
+
+.nav-link {
+  transition: ease-in-out 0.2s;
+}
+
+.bg-gold {
+  background: #999900;
+}
+
+@media (min-width: 992px) {
+  .container-fluid {
+    width: 85%;
+  }
 }
 </style>
