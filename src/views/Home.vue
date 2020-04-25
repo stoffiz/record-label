@@ -11,7 +11,10 @@
           </div>
         </div>
         <div class="row d-flex pb-5">
-            <div class="col-12 col-md-4 text-center">RECORDING#1</div>
+            <div class="col-12 col-md-4 text-center">
+              RECORDING#1
+              <img src="../assets/edited/forest01.jpg" alt="">
+              </div>
             <div class="col-12 col-md-4 text-center">RECORDING#2</div>
             <div class="col-12 col-md-4 text-center">RECORDING#3</div>
         </div>

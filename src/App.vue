@@ -68,6 +68,10 @@ export default {
   background: #999900;
 }
 
+.btn {
+  transition: ease-in-out 0.2s;
+}
+
 @media (min-width: 992px) {
   .container-fluid {
     width: 85%;
