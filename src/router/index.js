@@ -1,10 +1,15 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
 import Home from '../views/Home.vue'
 import Releases from '../views/Releases.vue'
 import Release from '../views/Release.vue'
+import Admin from '../views/Admin/List.vue'
+import Add from '../views/Admin/Add.vue'
+import Edit from '../views/Admin/Edit.vue'
+import NewsAdd from '../views/Admin/NewsAdd.vue'
+import NewsEdit from '../views/Admin/NewsEdit.vue'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
 const routes = [
   {
@@ -29,14 +34,51 @@ const routes = [
     path: '/release/:id',
     name: 'Release',
     component: Release, props: true
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: Admin
+  },
+  {
+    path: '/admin/add',
+    name: 'Add',
+    component: Add
+  },
+  {
+    path: '/admin/edit/:id',
+    name: 'Edit',
+    component: Edit, props: true
+  },
+  {
+    path: '/admin/news/add',
+    name: 'NewsAdd',
+    component: NewsAdd
+  },
+  {
+    path: '/admin/news/edit/:id',
+    name: 'NewsEdit',
+    component: NewsEdit, props: true
   }
 
 ]
 
-const router = new VueRouter({
+const router = new Router({
   mode: 'history',
-  base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  // redirect to login page if not logged in and trying to access a restricted page
+  const publicPages = ['/login', '/register'];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = localStorage.getItem('user');
+
+  // if (authRequired && !loggedIn) {
+  //   return next('/login');
+  // }
+
+  next();
 })
 
 export default router

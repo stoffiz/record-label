@@ -20,11 +20,11 @@
               Releases
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <router-link to="/releases" class="dropdown-item">All Releases</router-link>
-              <router-link to="/release/1" class="dropdown-item">Release#1</router-link>
-              <router-link to="/release/2" class="dropdown-item">Release#2</router-link>
+              <div v-for="release in releases.items" :key="release.id">
+              <router-link :to="`/release/${release.id}`" class="dropdown-item">#{{release.catalogNr}} | {{release.artist}}</router-link>
+              </div>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item" href="#">All Releases</a>
             </div>
           </span>
           <span class="nav-item d-none d-lg-block">|</span>
@@ -45,6 +45,8 @@
 </template>
 
 <script>
+import { mapState, mapActions, mapMutations } from "vuex";
+
 export default {
   name: 'Navigation',
   data: function () {
@@ -53,14 +55,23 @@ export default {
       username: 'Stoffe'
     }
   },
-  methods: {
-  subIsActive(input) {
-    const paths = Array.isArray(input) ? input : [input]
-    return paths.some(path => {
-      return this.$route.path.indexOf(path) === 0 // current path starts with this path string
+    computed: {
+    ...mapState({
+      releases: state => state.releases.nav,
     })
+  },
+  methods: {
+    ...mapActions("releases", ["getAll"]),
+    subIsActive(input) {
+      const paths = Array.isArray(input) ? input : [input]
+      return paths.some(path => {
+        return this.$route.path.indexOf(path) === 0 // current path starts with this path string
+      })
+    },
+  },
+  beforeMount: function() {
+    this.getAll();
   }
-}
 }
 </script>
 

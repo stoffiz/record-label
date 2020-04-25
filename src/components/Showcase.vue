@@ -21,14 +21,15 @@
 
 <script>
 export default {
-  props: {
-    id: Number,
-    activeRoute: String
-  },
   data: function() {
     return {
-      test: this.$route.name
+      test: ""
     };
+  },
+  computed: {
+    activeRoute: function() {
+      return this.$route.name
+    }
   }
 };
 </script>
