@@ -36,7 +36,7 @@
               />
             </div>
           </div>
-          <button class="btn btn-dark" type="submit">Update</button>
+          <button class="btn btn-dark mr-2" type="submit">Update</button>
           <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#deleteModal">Delete
             <i class="fas fa-trash-alt ml-2"></i>
           </button>

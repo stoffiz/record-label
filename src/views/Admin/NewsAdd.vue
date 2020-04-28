@@ -33,6 +33,7 @@
             </div>
           </div> -->
           <button class="btn btn-dark" type="submit">Add</button>
+          <div v-if="news.loading" class="spinner-border ml-2" role="status"></div>
         </form>
       </div>
     </div>

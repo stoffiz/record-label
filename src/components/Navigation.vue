@@ -29,11 +29,11 @@
           </span>
           <span class="nav-item d-none d-lg-block">|</span>
           <span class="nav-item">
-            <a class="nav-link px-0" href="#">Shop</a>
+            <router-link to="/shop" class="nav-link px-0">Shop</router-link>
           </span>
           <span class="nav-item d-none d-lg-block">|</span>
           <span class="nav-item">
-            <a class="nav-link px-0" href="#">Contact</a>
+            <router-link to="/contact" class="nav-link px-0">Contact</router-link>
           </span>
         <!-- <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

@@ -61,8 +61,10 @@
             <input id="frontCover" type="text" aria-describedby="fronCoverHelp" v-model="release.frontCover" class="form-control" />
             <small id="frontCoverHelp" class="form-text text-small text-muted">Eg. ../assets/img/cover.png</small>
           </div>
-          <button class="btn btn-dark mr-3" type="submit">Update</button>
-          <button v-on:click="deleteCurrentRelease" class="btn btn-dark">Delete</button>
+          <button class="btn btn-dark mr-2" type="submit">
+            <div v-if="releases.loading" class="spinner-border spinner-border-sm mr-2" role="status"></div>
+            Update
+          </button>
           <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#deleteModal">
             Delete <i class="fas fa-trash-alt ml-2"></i>
           </button>
@@ -91,7 +93,8 @@ export default {
   computed: {
     ...mapState({
       releases: state => state.releases.all,
-      alert: state => state.alert
+      alert: state => state.alert,
+      cart: state => state.cart
     }),
     formatDate: function(date) {
       return date.moment().format("YYYY-MM-DD")
@@ -99,6 +102,7 @@ export default {
   },
   methods: {
     ...mapActions("releases", ["getById", "updateRelease", "deleteRelease"]),
+    ...mapActions("cart", ["add"]),
     onSubmit: function() {
       if(!moment(this.releases.release.releaseDate, "YYYY-MM-DD").isValid()) {
         this.releases.release.releaseDate = moment().format("YYYY-MM-DD");
@@ -109,7 +113,7 @@ export default {
     deleteCurrentRelease: function() {
       this.deleteRelease(this.id)
       router.back();
-    }
+    },
   },
   beforeMount: function() {
     this.getById(this.id);

@@ -3,7 +3,7 @@
     <Navigation />
     <Showcase />
     <div>
-      <div v-if="alert.message" :class="`text-center alert ${alert.type}`">{{alert.message}}</div>
+      <div v-if="alert.message" :class="`text-center alert mb-0 ${alert.type}`">{{alert.message}}</div>
       <router-view />
     </div>
     <Footer />

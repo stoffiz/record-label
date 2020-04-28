@@ -42,7 +42,7 @@ const actions = {
     },
 
     updateNews({dispatch, commit}, newsPost) {
-        commit("updateNewsRequest");
+        commit("updateNewsRequest",);
         newsService.updateNews(newsPost)
         .then(
             res => {

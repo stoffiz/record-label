@@ -116,7 +116,7 @@ const mutations = {
         state.all = { release };
     },
     updateReleaseFailure(state, error) {
-        state.all = { error };
+        state.all = { error, loading: true };
     },
     deleteReleaseRequest(state) {
         state.all = { loading: true };

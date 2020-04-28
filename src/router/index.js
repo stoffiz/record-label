@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/Home.vue'
+import NewsDetail from '../views/NewsDetail.vue'
 import Releases from '../views/Releases.vue'
 import Release from '../views/Release.vue'
+import Shop from '../views/Shop.vue'
+import Contact from '../views/Contact.vue'
 import Admin from '../views/Admin/List.vue'
 import Add from '../views/Admin/Add.vue'
 import Edit from '../views/Admin/Edit.vue'
@@ -26,6 +29,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/News.vue')
   },
   {
+    path: "/news/:id",
+    name: "NewsDetail",
+    component: NewsDetail, props: true
+  },
+  {
     path: '/releases',
     name: 'Releases',
     component: Releases
@@ -34,6 +42,16 @@ const routes = [
     path: '/release/:id',
     name: 'Release',
     component: Release, props: true
+  },
+  {
+    path: "/shop",
+    name: "Shop",
+    component: Shop
+  },
+  {
+    path: "/contact",
+    name: "Contact",
+    component: Contact
   },
   {
     path: '/admin',
