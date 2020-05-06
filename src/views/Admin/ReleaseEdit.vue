@@ -52,9 +52,15 @@
             <label class="text-uppercase" for="catalogNumber">Catalog Number</label>
             <input id="catalogNumber" type="text" v-model="release.catalogNr" class="form-control" />
           </div>
-          <div class="form-group">
-            <label class="text-uppercase" for="quantity">Quantity</label>
-            <input id="quantity" type="text" v-model="release.quantity" class="form-control" />
+          <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+              <label class="text-uppercase" for="quantity">Quantity</label>
+              <input id="quantity" type="text" v-model="release.quantity" class="form-control" />
+            </div>
+            <div class="form-group col-12 col-md-6">
+              <label class="text-uppercase" for="price">Price</label>
+              <input id="price" type="text" v-model="release.price" class="form-control" />
+            </div>
           </div>
           <div class="form-group">
             <label class="text-uppercase" for="quantity">Front Cover</label>
@@ -92,7 +98,7 @@ export default {
   },
   computed: {
     ...mapState({
-      releases: state => state.releases.all,
+      releases: state => state.release.one,
       alert: state => state.alert,
       cart: state => state.cart
     }),
@@ -101,7 +107,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("releases", ["getById", "updateRelease", "deleteRelease"]),
+    ...mapActions("release", ["getById", "updateRelease", "deleteRelease"]),
     ...mapActions("cart", ["add"]),
     onSubmit: function() {
       if(!moment(this.releases.release.releaseDate, "YYYY-MM-DD").isValid()) {

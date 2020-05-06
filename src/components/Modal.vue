@@ -11,6 +11,7 @@
         Are you sure you want to delete: <br>
         <p v-if="release">{{release.artist}} - {{release.title}}</p>
         <p v-if="news">{{news.title}}</p>
+        <p v-if="message">{{message.subject}}</p>
       </div>
       <div class="modal-footer border-0">
         <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
@@ -27,16 +28,20 @@ import router from "../router";
 
 export default {
     name: "Modal",
-    props: ["release", "news"],
+    props: ["release", "news", "message"],
     methods: {
         ...mapActions("releases", ["deleteRelease"]),
         ...mapActions("news", ["deleteNews"]),
+        ...mapActions("message", ["deleteMessage"]),
     deleteCurrent: function() {
       if(this.release) {
         this.deleteRelease(this.release.id)
       }
       if(this.news) {
         this.deleteNews(this.news.id)
+      }
+      if(this.message) {
+        this.deleteMessage(this.message.id)
       }
       router.back();
     }

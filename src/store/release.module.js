@@ -3,7 +3,8 @@ import  router from '../router'
 
 const state = {
     all: {},
-    nav: {}
+    nav: {},
+    one: {}
 }
 
 const actions = {
@@ -51,7 +52,7 @@ const actions = {
         .then(
             res => {
                 commit("updateReleaseSuccess", res),
-                dispatch("alert/success", `${res.artist} - ${res.title} was updated`, {root: true})  
+                dispatch("alert/success", `${res.artist} - ${res.title} was updated`, {root: true}) 
             },
             error => {
                 commit("updateReleaseFailure", error),
@@ -67,7 +68,7 @@ const actions = {
         .then(
             res => {
                 commit("deleteReleaseSuccess", res),
-                dispatch("alert/success", `Release was deleted!`, {root: true})
+                dispatch("alert/success", `Release deleted!`, {root: true})
                 dispatch("getAll")
             },
             error => {
@@ -95,7 +96,7 @@ const mutations = {
         state.all = { loading: true };
     },
     getByIdSuccess(state, release) {
-        state.all = { release };
+        state.one = { release };
     },
     getByIdFailure(state, error) {
         state.all = { error };
@@ -129,7 +130,7 @@ const mutations = {
     }
 }
 
-export const releases = {
+export const release = {
     namespaced: true,
     state,
     actions,

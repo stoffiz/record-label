@@ -4,18 +4,28 @@
       <div class="footer-absolute">
         <div class="container">
           <div class="row d-flex py-4 justify-content-between align-items-center">
-            <div class="col-12 col-md-6 mb-3 mb-md-0">
-              <h4 class="lead text-uppercase">Subscribe to out newsletter</h4>
+            <div class="col-12 col-md-6 col-lg-5 mb-3 mb-md-0">
+              <h4 class="lead text-uppercase text-center text-md-left">Subscribe to our newsletter</h4>
               <p
-                class="text-small"
+                class="text-small text-center text-md-left"
               >Subscribe to get the latest information about new releases or other exiting news regarding the label. No junk news, only good news!</p>
-              <form class="form-inline">
-                <input type="text" id="email" class="form-control mb-2 mb-md-0 mr-1" placeholder="Email" />
-                <button class="btn btn-dark">Subscribe!</button>
+              <form v-on:submit.prevent="subscribe">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" aria-describedby="subscribeAddon" placeholder="Email" :class="{ 'is-invalid': $v.subscribeValue.$error }" v-model.trim="$v.subscribeValue.$model">
+                  <div class="input-group-append">
+                    <button class="btn btn-dark" id="subscribeAddon">
+                      <span v-if="!hasSubscribed">Subscribe</span>
+                      <span v-if="hasSubscribed">Thank You!</span>
+                    </button>
+                  </div>
+                  <div class="invalid-feedback text-dark text-uppercase letter-spacing-md" v-if="!$v.subscribeValue.required">Field is required</div>
+                  <div class="invalid-feedback text-dark text-uppercase letter-spacing-md" v-if="!$v.subscribeValue.email">Valid email address please</div>
+                  
+                </div>
               </form>
             </div>
-            <div class="col-12 col-md-6 d-flex justify-content-md-end">
-              <ul class="nav flex-column text-uppercase text-md-right">
+            <div class="col-12 col-md-6 col-lg-7 d-flex justify-content-center justify-content-md-end">
+              <ul class="nav flex-column text-uppercase text-center text-md-right">
                 <li class="nav-item">
                   <a class="nav-link p-0" href="#">+4621121315</a>
                 </li>
@@ -55,18 +65,34 @@
 </template>
 
 <script>
+import { required, email } from 'vuelidate/lib/validators'
+import moment from 'moment';
+
 export default {
     data: function() {
     return {
-      test: "Hello Christoffer Åström. Welcome to the website",
-      year: ""
+      subscribeValue: "",
+      hasSubscribed: false,
     };
   },
-    computed: {
+  computed: {
     currentYear: function() {
-      let date = new Date().toLocaleDateString().split("/")
-      return this.year = date[2]
+      return moment().format("YYYY")
     }
+  },
+  methods: {
+    subscribe: function() {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        return;
+      } 
+      else {
+        this.hasSubscribed = true;
+      }
+    }
+  },
+  validations: {
+    subscribeValue: {required, email}
   }
 }
 </script>

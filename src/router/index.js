@@ -5,12 +5,14 @@ import NewsDetail from '../views/NewsDetail.vue'
 import Releases from '../views/Releases.vue'
 import Release from '../views/Release.vue'
 import Shop from '../views/Shop.vue'
+import Checkout from '../views/Checkout.vue'
 import Contact from '../views/Contact.vue'
 import Admin from '../views/Admin/List.vue'
-import Add from '../views/Admin/Add.vue'
-import Edit from '../views/Admin/Edit.vue'
+import ReleaseAdd from '../views/Admin/ReleaseAdd.vue'
+import ReleaseEdit from '../views/Admin/ReleaseEdit.vue'
 import NewsAdd from '../views/Admin/NewsAdd.vue'
 import NewsEdit from '../views/Admin/NewsEdit.vue'
+import MessageDetail from '../views/Admin/MessageDetail.vue'
 
 Vue.use(Router)
 
@@ -49,6 +51,11 @@ const routes = [
     component: Shop
   },
   {
+    path: "/shop/checkout",
+    name: "Checkout",
+    component: Checkout
+  },
+  {
     path: "/contact",
     name: "Contact",
     component: Contact
@@ -59,14 +66,14 @@ const routes = [
     component: Admin
   },
   {
-    path: '/admin/add',
-    name: 'Add',
-    component: Add
+    path: '/admin/release/add',
+    name: 'ReleaseAdd',
+    component: ReleaseAdd
   },
   {
-    path: '/admin/edit/:id',
-    name: 'Edit',
-    component: Edit, props: true
+    path: '/admin/release/edit/:id',
+    name: 'ReleaseEdit',
+    component: ReleaseEdit, props: true
   },
   {
     path: '/admin/news/add',
@@ -77,6 +84,11 @@ const routes = [
     path: '/admin/news/edit/:id',
     name: 'NewsEdit',
     component: NewsEdit, props: true
+  },
+  {
+    path: '/admin/message/detail/:id',
+    name: 'MessageDetail',
+    component: MessageDetail, props: true
   }
 
 ]

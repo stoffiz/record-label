@@ -3,8 +3,8 @@
     <div class="bg-lightgrey">
       <div class="container">
         <div class="row py-5">
-          <div class="col">
-            <h4 class="display-4 text-center">New Releases</h4>
+          <div class="col-12">
+            <h4 class="display-4 text-center mb-4">NEW RELEASES</h4>
             <p
               class="lead"
             >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta odio laudantium impedit aliquam incidunt quod ex accusantium nisi ea non aspernatur magnam libero atque, temporibus culpa nesciunt sint veritatis. Sapiente fugiat dicta eos? Porro quo odio corporis in, cupiditate quae. Nisi repellendus cum eos omnis nobis, sit eum cumque ipsam.</p>
@@ -14,23 +14,23 @@
           <div  v-for="release in latestReleases" :key="release.id" class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0 text-center">
             <img :src="release.frontCover" class="rounded-circle" height="200" />
             <p class="text-center my-3 text-uppercase letter-spacing-lg">{{release.artist}} #{{release.catalogNr}}</p>
-            <router-link :to="`/release/${release.id}`" class="btn btn-sm btn-outline-dark shadow-sm letter-spacing-md">Read more</router-link>
+            <router-link :to="`/release/${release.id}`" class="btn btn-sm btn-outline-dark shadow-sm">Read more</router-link>
           </div>
         </div>
       </div>
     </div>
     <div class="bg-custom-white">
       <div class="container">
-        <div class="row py-5">
-          <div class="col-12 col-md-10">
+        <div v-if="news.items" class="row py-5">
+          <div v-for="news in latestNews" :key="news.id" class="col-12">
+            <h4 class="display-4 text-center mb-5">LATEST NEWS</h4>
             <h2
               class="text-gold text-uppercase font-weight-light"
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-            <p class="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta odio laudantium impedit aliquam incidunt quod ex accusantium nisi ea non aspernatur magnam libero atque, temporibus culpa nesciunt sint veritatis. Sapiente fugiat dicta eos? Porro quo odio corporis in, cupiditate quae. Nisi repellendus cum eos omnis nobis, sit eum cumque ipsam.
-              aliquam incidunt quod ex accusantium nisi ea non aspernatur magnam libero atque, temporibus culpa nesciunt sint veritatis. Sapiente fugiat dicta eos? Porro quo odio corporis in, cupiditate quae. Nisi repellendus cum eos omnis nobis, sit eum cumque ipsam.
+            >{{news.title}}</h2>
+            <p class="mb-4">{{shortSummary(news.body)}}
             </p>
-            <a href="#" class="btn btn-sm btn-dark letter-spacing-sm text-uppercase">Shop now</a>
-            <a href="#" class="btn btn-sm btn-outline-dark letter-spacing-sm text-uppercase ml-2">Contact</a>
+            <router-link :to="`/news/${news.id}`" class="btn btn-sm btn-dark">Read More</router-link>
+            <router-link to="/news" class="btn btn-sm btn-outline-dark ml-2">All News</router-link>
           </div>
         </div>
       </div>
@@ -50,19 +50,36 @@ export default {
   },
   computed: {
     ...mapState({
-      releases: state => state.releases.all,
+      releases: state => state.release.all,
+      news: state => state.news.all
     }),
     latestReleases: function() {
-      //reverse array for latest release
-      //split to get latest 3
-      return this.releases.items.reverse().slice(0, 3);
+      //slice to get latest 3 releases
+      return this.releases.items.slice(-3);
+    },
+    latestNews: function() {
+      return this.news.items.slice(0, 1)
     }
   },
   methods: {
-    ...mapActions("releases", ["getAll"]),
+    ...mapActions("release", ["getAll"]),
+    ...mapActions("news", {
+      getAllNews: "getAll"
+    }),
+    shortSummary: function(text) {
+      //return shorten summary of text that contains more than 1000 words//
+      let shortText = text
+      if(shortText.length < 1000) {
+        return shortText
+      }
+      else {
+        return shortText.slice(0, 1000) + "...";
+      }
+    }
   },
   beforeMount: function() {
     this.getAll();
+    this.getAllNews();
   }
 };
 </script>

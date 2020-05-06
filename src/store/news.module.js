@@ -47,7 +47,7 @@ const actions = {
         .then(
             res => {
                 commit("updateNewsSuccess", res),
-                dispatch("alert/success", `${res.title} was updated`, {root: true})
+                dispatch("alert/success", `${res.title} updated`, {root: true})
             },
             error => {
                 commit("updateNewsFailure", error),
@@ -63,7 +63,7 @@ const actions = {
         .then(
             res => {
                 commit("deleteNewsSuccess", res),
-                dispatch("alert/success", "News post was deleted", {root: true})
+                dispatch("alert/success", "News post deleted", {root: true})
                 dispatch("getAll")
             },
             error => {

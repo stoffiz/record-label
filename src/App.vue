@@ -4,7 +4,7 @@
     <Showcase />
     <div>
       <div v-if="alert.message" :class="`text-center alert mb-0 ${alert.type}`">{{alert.message}}</div>
-      <router-view />
+      <router-view :key="this.$route.fullPath" />
     </div>
     <Footer />
   </div>
@@ -48,6 +48,10 @@ p {
   letter-spacing: 0rem;
 }
 
+h1, h4 {
+  text-transform: uppercase;;
+}
+
 .custom-container {
   width: 80%;
   margin: auto;
@@ -81,6 +85,10 @@ p {
   transition: ease-in-out 0.2s;
 }
 
+.font-weight-custom {
+  font-weight: 100;
+}
+
 .letter-spacing-lg {
   letter-spacing: 0.5rem;
 }
@@ -99,6 +107,16 @@ p {
 
 .bg-custom-white {
   background: #fcf9f9;
+}
+
+.btn {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+.form-group, .form-check {
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
 }
 
 /* SPINNER */

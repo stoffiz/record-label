@@ -11,8 +11,8 @@
       </div>
       <div v-if="activeRoute == 'Home'" class="row mt-4 d-flex justify-content-center">
         <div class="col-12 col-md-8 text-center">
-          <a href="#" class="btn btn-dark mr-3">Artists</a>
-          <a href="#" class="btn btn-outline-dark text-white">Read More</a>
+          <router-link to="/releases" class="btn btn-dark mr-3">Releases</router-link>
+          <router-link to="/shop" class="btn btn-outline-secondary text-white">Shop</router-link>
         </div>
       </div>
     </div>

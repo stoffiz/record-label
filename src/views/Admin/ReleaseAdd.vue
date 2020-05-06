@@ -48,16 +48,22 @@
               class="form-control"
             />
           </div>
-          <div class="form-group">
-            <label class="text-uppercase" for="quantity">Quantity</label>
-            <input id="quantity" type="text" v-model="newRelease.quantity" class="form-control" />
+          <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+              <label class="text-uppercase" for="quantity">Quantity</label>
+              <input id="quantity" type="text" v-model="newRelease.quantity" class="form-control" />
+            </div>
+            <div class="form-group col-12 col-md-6">
+              <label class="text-uppercase" for="price">Price (EUR)</label>
+              <input id="price" type="text" v-model="newRelease.price" class="form-control" />
+            </div>
           </div>
           <div class="form-group">
             <label class="text-uppercase" for="quantity">Front Cover</label>
             <input id="frontCover" type="text" aria-describedby="fronCoverHelp" v-model="newRelease.frontCover" class="form-control" />
             <small id="frontCoverHelp" class="form-text text-small text-muted">Eg. ../assets/img/cover.png</small>
           </div>
-          <button class="btn btn-dark" type="submit">Update</button>
+          <button class="btn btn-dark" type="submit">Add</button>
         </form>
       </div>
     </div>
@@ -81,18 +87,18 @@ export default {
         releaseDate: "",
         catalogNr: "",
         quantity: "",
-        frontCover: ""
+        frontCover: "",
+        price: ""
       }
     };
   },
   computed: {
     ...mapState({
-      releases: state => state.releases.all,
-      alert: state => state.alert
+      releases: state => state.release.all,
     })
   },
   methods: {
-    ...mapActions("releases", ["addRelease"]),
+    ...mapActions("release", ["addRelease"]),
     
     onSubmit: function() {
       if(!moment(this.newRelease.releaseDate, "YYYY-MM-DD").isValid()) {

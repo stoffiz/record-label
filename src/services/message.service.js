@@ -1,59 +1,58 @@
-export const newsService = {
+export const messageService = {
     getAll,
     getById,
-    addNews,
-    updateNews,
-    deleteNews
+    addMessage,
+    updateMessage,
+    deleteMessage
 }
 
 function getAll() {
-    return fetch("https://localhost:5001/api/news")
+    return fetch("https://localhost:5001/api/message")
     .then(handleResponse)
 }
 
 function getById(id) {
-    return fetch("https://localhost:5001/api/news/" + id)
+    return fetch("https://localhost:5001/api/message/" + id)
     .then(handleResponse)
 }
 
-function addNews(newsPost) {
+function addMessage(message) {
     const requestOptions = {
         method: 'POST',
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(newsPost)
+        body: JSON.stringify(message)
     }
-    return fetch("https://localhost:5001/api/news", requestOptions)
+    return fetch("https://localhost:5001/api/message", requestOptions)
         .then(handleResponse)
 }
 
-function updateNews(newsPost) {
+function updateMessage(message) {
     const requestOptions = {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(newsPost)
+        body: JSON.stringify(message)
     }
-    return fetch("https://localhost:5001/api/news/" + newsPost.id, requestOptions)
+    return fetch("https://localhost:5001/api/message/" + message.id, requestOptions)
     .then(handleResponse)
 }
 
-function deleteNews(id) {
+function deleteMessage(id) {
     const requestOptions = {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
         },
     }
-    return fetch("https://localhost:5001/api/news/" + id, requestOptions)
+    return fetch("https://localhost:5001/api/message/" + id, requestOptions)
     .then(handleResponse)
 }
 
 
-//HANDLE RESPONSE
 function handleResponse(response) {
 
     return response.text().then(text => {
