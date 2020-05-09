@@ -13,7 +13,7 @@
         <div class="col-12 mb-5 text-right">
           <div class="dropdown">
             <button class="btn btn-sm btn-outline-dark dropdown letter-spacing-sm text-uppercase" type="button" id="dropdownCart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Cart <i class="fa fa-shopping-cart mx-1"></i><span v-if="quanityInCart > 0" class="badge badge-dark">{{quanityInCart}}</span>
+              Cart <i class="fa fa-shopping-cart mx-1"></i><span v-if="quanityInCart > 0">{{quanityInCart}}</span>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownCart">
               <span v-if="quanityInCart == 0" class="dropdown-item letter-spacing-sm text-uppercase">Cart empty</span>

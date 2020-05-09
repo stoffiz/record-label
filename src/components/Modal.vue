@@ -30,7 +30,7 @@ export default {
     name: "Modal",
     props: ["release", "news", "message"],
     methods: {
-        ...mapActions("releases", ["deleteRelease"]),
+        ...mapActions("release", ["deleteRelease"]),
         ...mapActions("news", ["deleteNews"]),
         ...mapActions("message", ["deleteMessage"]),
     deleteCurrent: function() {

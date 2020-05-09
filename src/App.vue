@@ -85,6 +85,12 @@ h1, h4 {
   transition: ease-in-out 0.2s;
 }
 
+.btn-outline-dark:hover, .btn-outline-secondary:hover {
+    background: #999900;
+    border-color: #999900;
+    color: #FFFFFF;
+}
+
 .font-weight-custom {
   font-weight: 100;
 }

@@ -52,7 +52,7 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
-import { required, minLength, between, email, sameAs } from 'vuelidate/lib/validators'
+import { required, minLength, email, sameAs } from 'vuelidate/lib/validators'
 
 export default {
     data: function() {

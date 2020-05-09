@@ -12,7 +12,7 @@ import ReleaseAdd from '../views/Admin/ReleaseAdd.vue'
 import ReleaseEdit from '../views/Admin/ReleaseEdit.vue'
 import NewsAdd from '../views/Admin/NewsAdd.vue'
 import NewsEdit from '../views/Admin/NewsEdit.vue'
-import MessageDetail from '../views/Admin/MessageDetail.vue'
+import MessageEdit from '../views/Admin/MessageEdit.vue'
 
 Vue.use(Router)
 
@@ -87,8 +87,8 @@ const routes = [
   },
   {
     path: '/admin/message/detail/:id',
-    name: 'MessageDetail',
-    component: MessageDetail, props: true
+    name: 'MessageEdit',
+    component: MessageEdit, props: true
   }
 
 ]

@@ -48,11 +48,12 @@ const actions = {
             res => {
                 commit("updateNewsSuccess", res),
                 dispatch("alert/success", `${res.title} updated`, {root: true})
+                dispatch("getById", newsPost.id)
             },
             error => {
                 commit("updateNewsFailure", error),
                 dispatch("alert/error", error, {root: true})
-                dispatch("getById", release.id)
+                dispatch("getById", newsPost.id)
             }
         )
     },
@@ -90,7 +91,7 @@ const mutations = {
         state.all = { loading: true };
     },
     getByIdSuccess(state, news) {
-        state.all = { news };
+        state.all = { items: news };
     },
     getByIdFailure(state, error) {
         state.all = { error, loading: true };

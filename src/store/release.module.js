@@ -96,7 +96,7 @@ const mutations = {
         state.all = { loading: true };
     },
     getByIdSuccess(state, release) {
-        state.one = { release };
+        state.one = { items: release };
     },
     getByIdFailure(state, error) {
         state.all = { error };
