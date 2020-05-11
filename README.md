@@ -2,7 +2,7 @@
 
 ## Navigation
 ```
-Navigation to http:/localhost:8080/admin to add pr delete items from the site
+Navigate to http:/localhost:8080/admin to add or delete items from the site
 ```
 
 ## Project setup
