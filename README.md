@@ -1,5 +1,9 @@
 # record-label
 
+## Navigation
+```
+Navigation to http:/localhost:8080/admin to add pr delete items from the site
+
 ## Project setup
 ```
 npm install
