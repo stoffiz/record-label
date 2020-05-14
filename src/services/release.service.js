@@ -1,3 +1,5 @@
+import { authHeader } from "../helpers"
+
 export const releaseService = {
     getAll,
     getById,
@@ -21,6 +23,7 @@ function addRelease(release) {
         method: 'POST',
         mode: 'cors',
         headers: {
+            ...authHeader(),
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(release)

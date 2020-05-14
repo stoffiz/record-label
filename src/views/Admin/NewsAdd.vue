@@ -62,6 +62,7 @@ export default {
       else {
       this.newsPost.published = moment().format("YYYY-MM-DD");
       this.newsPost.updated = this.newsPost.published
+      console.log(this.newsPost)
       this.addNews(this.newsPost)
       }
     }

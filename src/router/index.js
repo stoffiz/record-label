@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import { Role } from '../helpers'
+
 import Home from '../views/Home.vue'
 import NewsDetail from '../views/NewsDetail.vue'
 import Releases from '../views/Releases.vue'
@@ -13,6 +15,8 @@ import ReleaseEdit from '../views/Admin/ReleaseEdit.vue'
 import NewsAdd from '../views/Admin/NewsAdd.vue'
 import NewsEdit from '../views/Admin/NewsEdit.vue'
 import MessageEdit from '../views/Admin/MessageEdit.vue'
+import UserLogin from '../views/Admin/UserLogin.vue'
+import UserRegister from '../views/Admin/UserRegister.vue'
 
 Vue.use(Router)
 
@@ -63,32 +67,51 @@ const routes = [
   {
     path: '/admin',
     name: 'Admin',
-    component: Admin
+    component: Admin,
+    meta: { authorize: [Role.Admin]}
   },
   {
     path: '/admin/release/add',
     name: 'ReleaseAdd',
-    component: ReleaseAdd
+    component: ReleaseAdd,
+    meta: { authorize: [Role.Admin]}
   },
   {
     path: '/admin/release/edit/:id',
     name: 'ReleaseEdit',
-    component: ReleaseEdit, props: true
+    component: ReleaseEdit, props: true,
+    meta: { authorize: [Role.Admin]}
   },
   {
     path: '/admin/news/add',
     name: 'NewsAdd',
-    component: NewsAdd
+    component: NewsAdd,
+    meta: { authorize: [Role.Admin]}
   },
   {
     path: '/admin/news/edit/:id',
     name: 'NewsEdit',
-    component: NewsEdit, props: true
+    component: NewsEdit, props: true,
+    meta: { authorize: [Role.Admin]}
   },
   {
     path: '/admin/message/detail/:id',
     name: 'MessageEdit',
-    component: MessageEdit, props: true
+    component: MessageEdit, props: true,
+    meta: { authorize: [Role.Admin]}
+  },
+  {
+    path: '/admin/login',
+    name: 'UserLogin',
+    component: UserLogin
+  },
+  {
+    path: '/admin/register',
+    name: 'UserRegister',
+    component: UserRegister
+  },
+  {
+    path: "*", redirect: "/"
   }
 
 ]
@@ -98,15 +121,28 @@ const router = new Router({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  // redirect to login page if not logged in and trying to access a restricted page
-  const publicPages = ['/login', '/register'];
-  const authRequired = !publicPages.includes(to.path);
-  const loggedIn = localStorage.getItem('user');
 
-  // if (authRequired && !loggedIn) {
-  //   return next('/login');
-  // }
+router.beforeEach((to, from, next) => {
+    // redirect to login page if not logged in and trying to access a restricted page
+    const adminPages = ["Admin", "ReleaseAdd", "ReleaseEdit", "NewsAdd", "NewsEdit", "MessageEdit"]
+    const authRequired = adminPages.includes(to.name);
+    const loggedIn = localStorage.getItem('user');
+
+    if (authRequired && !loggedIn) {
+        return next('/admin/login');
+    }
+
+    if(authRequired && loggedIn) {
+        if(to.meta.authorize) {
+            let user = JSON.parse(loggedIn);
+            if(user.role === Role.Admin) {
+                next()
+            } else {
+                next("/admin/login")
+            }
+        }
+    }
+
 
   next();
 })
