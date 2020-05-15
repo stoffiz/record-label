@@ -1,7 +1,7 @@
 <template>
 <div class="bg-lightgrey">
   <div class="container">
-    <div v-if="messages" class="row py-5" style="height: 75vh">
+    <div v-if="messages" class="row py-5" style="">
       <div v-for="message in messages" :key="message.id" class="col-12">
           <h4 class="text-center display-4 mb-5">Message Detail</h4>
           <Modal v-bind:message="message" />
